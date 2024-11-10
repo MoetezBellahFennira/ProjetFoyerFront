@@ -1,0 +1,14 @@
+.form-row {
+    margin-bottom: 15px;
+    /* Espacement entre les lignes */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    /* Espacement entre les champs */
+}
+
+button {
+    margin-top: 20px;
+    /* Espacement au-dessus du bouton */
+}

@@ -1,0 +1,49 @@
+<h2>Add etudiant</h2>
+<form [formGroup]="etudiantForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="nomEtudiant">Nom etudiant</label>
+        <input type="text" class="form-control" id="nomEtudiant" formControlName="nomEtudiant" placeholder="Enter nom Etudiant">
+    </div>
+    <div class="form-group">
+        <label for="prenomEtudiant">Prenom Etudiant</label>
+        <input type="text" class="form-control" id="prenomEtudiant" formControlName="prenomEtudiant" placeholder="Enter prenom Etudiant">
+    </div>
+    <div class="form-group">
+        <label for="cinEtudiant">CIN Etudiant</label>
+        <input type="number" class="form-control" id="cinEtudiant" formControlName="cinEtudiant" placeholder="Enter cin Etudiant">
+    </div>
+    <div class="form-group">
+        <label for="dateNaissance">Date Naissance</label>
+        <input type="date" class="form-control" id="dateNaissance" formControlName="dateNaissance" placeholder="Enter dateNaissance">
+    </div>
+    <button type="submit" class="btn btn-primary">Add etudiant</button>
+</form>
+<br>
+<h2 style="text-align: center;">Liste des etudiants</h2>
+
+<div class="table-container">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom etudiant</th>
+                <th>Prenom etudiant</th>
+                <th>CIN Etudiant</th>
+                <th>Date Naissance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let etudiant of etudiants">
+                <td>{{ etudiant.idEtudiant }}</td>
+                <td>{{ etudiant.nomEtudiant }}</td>
+                <td>{{ etudiant.prenomEtudiant }}</td>
+                <td>{{ etudiant.cinEtudiant }}</td>
+                <td>{{ etudiant.dateNaissance }}</td>
+                <td>
+                    <button (click)="deleteetudiant(etudiant.idEtudiant)" class="btn btn-danger btn-sm">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

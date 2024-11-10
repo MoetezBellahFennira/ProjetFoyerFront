@@ -1,0 +1,37 @@
+<h2>Add Bloc</h2>
+<form [formGroup]="blocForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="nomBloc">Nom Bloc</label>
+        <input type="text" class="form-control" id="nomBloc" formControlName="nomBloc" placeholder="Enter nomBloc">
+    </div>
+    <div class="form-group">
+        <label for="capaciteBloc">Capacité Bloc</label>
+        <input type="text" class="form-control" id="capaciteBloc" formControlName="capaciteBloc" placeholder="Capacité Bloc">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Bloc</button>
+</form>
+<br>
+<h2 style="text-align: center;">Liste des Blocs</h2>
+
+<div class="table-container">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom Bloc</th>
+                <th>Capacité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bloc of blocs">
+                <td>{{ bloc.idBloc }}</td>
+                <td>{{ bloc.nomBloc }}</td>
+                <td>{{ bloc.capaciteBloc }}</td>
+                <td>
+                    <button (click)="deleteBloc(bloc.idBloc)" class="btn btn-danger btn-sm">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

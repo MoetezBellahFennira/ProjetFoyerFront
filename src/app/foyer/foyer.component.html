@@ -1,0 +1,52 @@
+<h2>Add foyer</h2>
+<form [formGroup]="foyerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="nomfoyer">Nom foyer</label>
+        <input type="text" class="form-control" id="nomfoyer" formControlName="nomfoyer" placeholder="Entrez le nom du foyer">
+    </div>
+    <div class="form-group">
+        <label for="capaciteFoyer">Capacité foyer</label>
+        <input type="text" class="form-control" id="capaciteFoyer" formControlName="capaciteFoyer" placeholder="Entrez la capacité du foyer">
+    </div>
+
+    <!-- Liste déroulante pour les blocs -->
+    <div class="form-group">
+        <label for="bloc">Sélectionnez un bloc</label>
+        <select class="form-control" id="bloc" formControlName="bloc">
+            <option *ngFor="let bloc of blocs" [value]="bloc.idBloc">{{ bloc.nomBloc }}</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter foyer</button>
+</form>
+
+<br>
+<h2 style="text-align: center;">Liste des foyers</h2>
+
+<div class="table-container">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom foyer</th>
+                <th>Capacité foyer</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let foyer of foyers">
+                <td>{{ foyer.idFoyer }}</td>
+                <td>{{ foyer.nomFoyer }}</td>
+                <td>{{ foyer.capaciteFoyer }}</td>
+
+                <!-- Affichage des informations des blocs associés au foyer -->
+
+
+                <td>
+                    <button (click)="deletefoyer(foyer.idFoyer)" class="btn btn-danger btn-sm">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

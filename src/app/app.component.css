@@ -1,0 +1,26 @@
+/* Centrer le contenu de la navbar */
+
+.navbar {
+    text-align: center;
+}
+
+
+/* Styliser les liens de la navbar */
+
+.nav-item {
+    margin: 0 15px;
+    /* Espacement entre les éléments */
+    font-size: 1.4em;
+    transition: color 0.2s ease-in-out;
+    /* Transition pour effet de survol */
+}
+
+
+/* Effet de survol */
+
+.nav-item:hover {
+    color: #007bff;
+    /* Change la couleur lors du survol */
+    border-bottom: 3px solid #007bff;
+    /* Soulignement lors du survol */
+}

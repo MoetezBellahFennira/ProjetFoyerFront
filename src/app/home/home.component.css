@@ -1,0 +1,28 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.styled-image {
+    width: 300px;
+    /* Ajustez la taille selon vos besoins */
+    height: auto;
+    border: 5px solid #97a097;
+    /* Couleur du cadre */
+    border-radius: 15px;
+    /* Bords arrondis du cadre */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    /* Ombre */
+    transition: transform 0.3s ease-in-out;
+    /* Animation de zoom */
+    width: 1000px;
+}
+
+.styled-image:hover {
+    transform: scale(1.05);
+    /* Effet de zoom au survol */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    /* Ombre plus intense au survol */
+}
