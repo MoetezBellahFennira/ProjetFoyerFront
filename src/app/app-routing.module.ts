@@ -9,6 +9,8 @@ import { ChambreComponent } from './chambre/chambre.component';
 import { UniversiteComponent } from './universite/universite.component';
 
 const routes: Routes = [
+  {path:'', redirectTo:'home', pathMatch:'full'},
+
   {path: 'home',component:HomeComponent},
   {path: 'etudiant',component:EtudiantComponent},
   {path: 'bloc',component:BlocComponent},
