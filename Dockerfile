@@ -1,10 +1,29 @@
-# stage 1
-FROM node:latest as node
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build --prod
+## Build Stage
+FROM node:18.12 AS build
 
-# stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/app-front /usr/share/nginx/html
+WORKDIR /app
+COPY package*.json /app/
+
+## Install Angular CLI globally
+RUN npm install -g @angular/cli@latest
+
+## Install dependencies
+RUN npm install --legacy-peer-deps
+
+COPY ./ /app/
+
+## Run the build using the Angular CLI
+RUN ng build --configuration=production --output-path=dist
+
+## Production Stage
+FROM nginx:1.21-alpine as production-stage
+
+## Copy the custom NGINX configuration file into /etc/nginx/conf.d/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+## Copy the built files from the previous stage into the NGINX server
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
