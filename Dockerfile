@@ -2,28 +2,33 @@
 FROM node:18.12 AS build
 
 WORKDIR /app
+
+## Copier les fichiers package.json et package-lock.json
 COPY package*.json /app/
 
-## Install Angular CLI globally
+## Installer Angular CLI globalement
 RUN npm install -g @angular/cli@latest
 
-## Install dependencies
+## Installer les dépendances
 RUN npm install --legacy-peer-deps
 
+## Copier le code source de l'application dans le conteneur
 COPY ./ /app/
 
-## Run the build using the Angular CLI
+## Construire l'application Angular en mode production
 RUN ng build --configuration=production --output-path=dist
 
 ## Production Stage
-FROM nginx:1.21-alpine as production-stage
+FROM nginx:1.21-alpine AS production-stage
 
-## Copy the custom NGINX configuration file into /etc/nginx/conf.d/
+## Copier le fichier de configuration personnalisé de NGINX
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-## Copy the built files from the previous stage into the NGINX server
+## Copier les fichiers construits à partir de l'étape précédente dans le serveur NGINX
 COPY --from=build /app/dist /usr/share/nginx/html
 
+## Exposer le port 80
 EXPOSE 80
 
+## Démarrer le serveur NGINX
 CMD ["nginx", "-g", "daemon off;"]
